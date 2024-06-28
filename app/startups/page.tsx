@@ -1,7 +1,7 @@
-import { createClient } from "@/utils/supabase/server";
-import { columns } from "./columns";
-import { DataTable } from "./data-table";
-import { redirect } from "next/navigation";
+import { createClient } from "@/utils/supabase/server"
+import { columns } from "./columns"
+import { DataTable } from "./data-table"
+import { redirect } from "next/navigation"
 
 export default async function InvestorsPage() 
 {
