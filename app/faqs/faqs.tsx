@@ -5,8 +5,9 @@ import { AnimatePresence, motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { addQuestion } from "@/lib/actions"
 import { Loader2 } from "lucide-react"
+import FaqQuestion from "./faqquestion"
 
-type FAQ = {
+export type FAQ = {
     answer: string | null;
     id: number;
     question: string;
@@ -102,34 +103,27 @@ export default function FAQSTabs({ data }: Props)
                 <Button disabled={isPending} onClick={() => startTransition(() => handleAddNewQuestion())}>{isPending ? <Loader2 stroke="#fff" className='animate-spin mx-auto' /> : 'Add'}</Button>
             </div>
             {activeTab === 'General Questions' && optimisticData.filter((faq) => faq.tab === 'General Questions').map((faq) => (
-                <motion.div key={faq.id} className='flex flex-col items-center justify-center gap-4'>
-                    <h2 className='text-lg font-semibold text-main-gray'>
-                        {faq.question}
-                    </h2>
-                    <p className='text-sm text-main-gray'>
-                        {faq.answer}
-                    </p>
-                </motion.div>
+                <FaqQuestion faq={faq} />
             ))}
             {activeTab === 'For Startups' && optimisticData.filter((faq) => faq.tab === 'For Startups').map((faq) => (
-                <motion.div key={faq.id} className='flex flex-col items-center justify-center gap-4'>
+                <div key={faq.id} className='flex flex-col items-center justify-center gap-4'>
                     <h2 className='text-lg font-semibold text-main-gray'>
                         {faq.question}
                     </h2>
                     <p className='text-sm text-main-gray'>
                         {faq.answer}
                     </p>
-                </motion.div>
+                </div>
             ))}
             {activeTab === "For Investors" && optimisticData.filter((faq) => faq.tab === 'For Investors').map((faq) => (
-                <motion.div key={faq.id} className='flex flex-col items-center justify-center gap-4'>
+                <div key={faq.id} className='flex flex-col items-center justify-center gap-4'>
                     <h2 className='text-lg font-semibold text-main-gray'>
                         {faq.question}
                     </h2>
                     <p className='text-sm text-main-gray'>
                         {faq.answer}
                     </p>
-                </motion.div>
+                </div>
             ))}
         </AnimatePresence>
     )
